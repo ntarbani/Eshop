@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class='col-lg-5 mx-auto border rounded p-3'>
+    <form action='/signup' method='POST'>
+    {% csrf_token %}
+    
+
+
+    {% if error%}
+        <div class="alert  alert-danger " role="alert">
+        {{error}}
+        </div>
+    {% endif %}
+    <h4 class='alert alert-light pt-4'> Sign Up</h4>
+    <div class="mb-3">
+        <label for="fname" class="form-label">First Name</label>
+        <input required type="text" class="form-control" id="exampleInputEmail1" value='{{value.fname}}'  name='fname' aria-describedby="emailHelp"  placeholder="john"> 
+    </div>
+    <div class="mb-3">
+        <label for="lname" class="form-label">Last Name</label>
+        <input required type="text" class="form-control" value='{{value.lname}}' id="exampleInputEmail1" name='lname' aria-describedby="emailHelp"  placeholder="Warner">
+        
+    </div>
+    <div class="mb-3">
+        <label for ="phone" class="form-label">Phone</label>
+        <input required type="text" class="form-control" id="exampleInputEmail1" value='{{value.phone}}' name='phone' aria-describedby="emailHelp"  placeholder="Warner">
+        
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input required  type="email" class="form-control" id="exampleInputEmail1" value='{{value.email}}' name='email' aria-describedby="emailHelp"  placeholder="example@gmail.com">
+        
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input required type="password" class="form-control" id="password" name='password'placeholder="***************">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Create an Account</button>
+    </form>
+</div>
+{% endblock body %}
+{% block title %}Signup Eshop{% endblock title %}

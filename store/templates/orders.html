@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load cart%}
+{% load custom_filter%}
+<div class="container mx-auto border rounded m-4  p-4">
+    <p class='display-5'> Your Orders</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><img src="{{order.product.image.url}}" style="height:100px;" class=" rounded float-left" alt="..."></td>
+                <td>{{order.product.name}}</td>
+                <td>{{order.date}}</td>
+                <td>{{order.price|currency}}</td>
+                <td>{{order.quantity}}</td>
+                <td>{{order.price|multiply:order.quantity|currency}}</td>
+                {% if order.status%}
+                    <td ><span class="badge badge-pill badge-success">Completed</small></td>
+                {% else %}
+                    <td><span class="badge badge-pill badge-warning">Pending</small></td>
+                {%endif%}
+            </tr>
+        {% endfor %}
+        </tbody>
+        
+    </table>
+   
+</div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>   
+
+
+{% endblock body %}
+
+{% block title %}Orders Eshop{% endblock title %}
